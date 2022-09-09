@@ -1,16 +1,29 @@
 let contacts = []
 
+
+
+function formatPhoneNumber(value){
+  if (!value) return value;
+  const phoneNumber = value.replace(/[^\d]/g, "")
+  //console.log(phoneNumber)
+  const phoneNumberLength = phoneNumber.length 
+
+  if(phoneNumberLength < 4){
+    return phoneNumber}
+  if(phoneNumberLength < 7) {
+    return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3)}`;
+  
+  }
+  return `(${phoneNumber.slice(0,3)}) ${phoneNumber.slice(3,6)}-${phoneNumber.slice(6,9)}`;
+}
+
 function phoneNumberFormatter(){
   const inputField = document.getElementById("phone-numb");
-  console.log(inputField)
   const formattedInputValue = formatPhoneNumber(inputField.value);
   inputField.value = formattedInputValue
 }
 
-function formatPhoneNumber(){
-  if (!value) return value;
-  const phoneNumber = value.replace(/[^\d]/g, "") 
-}
+
 
 /**
  * Called when submitting the new Contact Form
@@ -22,7 +35,7 @@ function formatPhoneNumber(){
  * *** push: resources/push.jpg
  */
 function addContact(event) {
-  event.preventDefault()
+  event.preventDefault();
   var randNumber = generateId();
   let form = event.target
 
@@ -92,7 +105,7 @@ function drawContacts() {
               <i class="fa fa-fw fa-phone"></i>
               <span>${contact.phoneNumber}</span>
             </p>
-            <div><span>${contact.contactId}</span></div>
+            
             <i contactId=${contact.contactId} onclick="removeContactByElement(this)" class="action fa fa-trash text-danger"></i>
           </div>
         </div>
@@ -108,7 +121,7 @@ function drawContacts() {
               <i class="fa fa-fw fa-phone"></i>
               <span>${contact.phoneNumber}</span>
             </p>
-            <div><span>${contact.contactId}</span></div>
+            
             <i contactId=${contact.contactId} onclick="removeContactByElement(this)" class="action fa fa-trash text-danger"></i>
           </div>
         </div>
@@ -139,9 +152,7 @@ function removeContact(contactId) {
   let i = contacts.findIndex(contact => {
     return contact.contactId == contactId
   })
-  console.log(i)
   contacts.splice(i, 1)
-  console.log(contacts)
   saveContacts()
   loadContacts()
   drawContacts()
@@ -172,7 +183,6 @@ function generateId() {
 }
 
 
-//console.log(contacts)
+
 loadContacts()
 drawContacts()
-//console.log(contacts)

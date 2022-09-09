@@ -37,10 +37,11 @@
       </div>
       <div>
         <label for="name">Name:</label>
-        <input type="text" name="name">
+        <input type="text" name="name" required>
         
         <label for="phoneNumber">Phone Number:</label>
-        <input onkeydown="phoneNumberFormatter()" type="tel" name="phoneNumber" placeholder="(###) ###-####" id="phone-numb">
+        <input class="warning" onkeydown="phoneNumberFormatter(value)" type="tel" name="phoneNumber" placeholder="(###) ###-####" id="phone-numb" required minlength="14" oninvalid="this.setCustomValidity('Please enter a 10-digit phone number')"
+        oninput="this.setCustomValidity('')">
         
         <div class="checkboxes">
           <label for="emergencyContact"><span>Emergency Contact</span><input type="checkbox" name="emergencyContact" id="emergContact" value="emergency-contact"></label>
@@ -50,6 +51,7 @@
       <hr>
       <div class="d-flex space-between">
         <button type="submit" onsubmit="addContact(event)">Submit</button>
+      
         
         
         <button class="btn-cancel" type="button" onclick="toggleAddContactBack()">cancel</button>
