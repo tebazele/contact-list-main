@@ -1,5 +1,17 @@
 let contacts = []
 
+function phoneNumberFormatter(){
+  const inputField = document.getElementById("phone-numb");
+  console.log(inputField)
+  const formattedInputValue = formatPhoneNumber(inputField.value);
+  inputField.value = formattedInputValue
+}
+
+function formatPhoneNumber(){
+  if (!value) return value;
+  const phoneNumber = value.replace(/[^\d]/g, "") 
+}
+
 /**
  * Called when submitting the new Contact Form
  * This method will pull data from the form
