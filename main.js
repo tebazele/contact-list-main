@@ -28,8 +28,10 @@ function addContact(event) {
   //console.log(contacts)
 
   form.reset()
+  toggleAddContactBack()
   drawContacts()
   saveContacts()
+  
 }
 
 /**
@@ -106,6 +108,10 @@ function drawContacts() {
   document.getElementById("contact-list").innerHTML = contactTemplate
   
 }
+function removeContactByElement(element) {
+  let contactId = element.getAttribute("contactId")
+  removeContact(contactId)
+}
 
 /**
  * This function is called with a contact id
@@ -122,12 +128,12 @@ function removeContact(contactId) {
     return contact.contactId == contactId
   })
   console.log(i)
+  contacts.splice(i, 1)
+  console.log(contacts)
+  saveContacts()
+  loadContacts()
+  drawContacts()
   
-}
-
-function removeContactByElement(element) {
-  let contactId = element.getAttribute("contactId")
-  removeContact(contactId)
 }
 
 /**
@@ -138,7 +144,7 @@ function toggleAddContactForm() {
   document.getElementById("create-contact").classList.add("hidden")
 }
 
-function cancelAddContact(){
+function toggleAddContactBack(){
   document.getElementById("new-contact-form").classList.add("hidden")
   document.getElementById("create-contact").classList.remove("hidden")
 }
